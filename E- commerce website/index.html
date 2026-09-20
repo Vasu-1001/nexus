@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>E-Learn — Frontend Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" role="banner">
+        <a href="#home" id="logo">E-Learn</a>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#dashboard" class="nav-link" id="nav-dashboard">Dashboard</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button id="open-login" class="btn btn-outline">Login</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Router mounts here -->
+    <div id="app"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> E-Learning plateform</p>
+    </div>
+  </footer>
+
+  <!-- Templates -->
+  <template id="home-template">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Learn anything, anywhere</h1>
+        <p>Interactive courses, quizzes and progress tracking </p>
+        <div class="hero-ctas">
+          <a href="#courses" class="btn">Explore Courses</a>
+          <button id="hero-signup" class="btn btn-outline">Sign Up</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Featured courses</h2>
+      <div id="featured-list" class="card-grid"></div>
+    </section>
+
+    <section class="section">
+      <h2>Why E-Learn?</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <h3>Flexible</h3>
+          <p>Learn at your own pace with responsive lessons.</p>
+        </div>
+        <div class="feature">
+          <h3>Interactive</h3>
+          <p>Quizzes and progress tracking to keep you engaged.</p>
+        </div>
+        <div class="feature">
+          <h3>Accessible</h3>
+          <p>Built with semantic HTML and keyboard navigation in mind.</p>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="courses-template">
+    <section class="section">
+      <div class="list-controls">
+        <div>
+          <input id="search-input" type="search" placeholder="Search courses..." aria-label="Search courses" />
+          <select id="category-filter" aria-label="Filter by category">
+            <option value="">All categories</option>
+          </select>
+          <select id="level-filter" aria-label="Filter by level">
+            <option value="">All levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+        <div>
+          <button id="clear-filters" class="btn btn-small">Clear</button>
+        </div>
+      </div>
+
+      <div id="courses-grid" class="card-grid"></div>
+    </section>
+  </template>
+
+  <template id="course-detail-template">
+    <section class="section course-detail">
+      <div class="detail-grid">
+        <div class="detail-left">
+          <div id="video-placeholder" class="video-box" role="region" aria-label="Course video">
+            <p>Video player placeholder</p>
+            <video id="sample-video" controls width="100%" src="" style="max-height:360px"></video>
+          </div>
+
+          <div class="lesson-list">
+            <h3>Lessons</h3>
+            <ul id="lessons"></ul>
+          </div>
+        </div>
+
+        <aside class="detail-right">
+          <h2 id="course-title"></h2>
+          <p id="course-meta"></p>
+          <p id="course-desc"></p>
+          <div class="instructor-card" id="instructor-card"></div>
+          <div class="course-actions">
+            <button id="enroll-btn" class="btn">Enroll</button>
+            <button id="start-quiz" class="btn btn-outline">Take Sample Quiz</button>
+          </div>
+        </aside>
+      </div>
+
+      <section class="section mt-20">
+        <h3>Reviews</h3>
+        <div id="reviews"></div>
+      </section>
+    </section>
+  </template>
+
+  <template id="dashboard-template">
+    <section class="section">
+      <h2>Dashboard</h2>
+      <div id="profile-card" class="profile-card">
+        <p><strong id="profile-name"></strong> — <span id="profile-email"></span></p>
+      </div>
+
+      <section>
+        <h3>Enrolled Courses</h3>
+        <div id="enrolled-list" class="card-grid"></div>
+      </section>
+    </section>
+  </template>
+
+  <template id="contact-template">
+    <section class="section">
+      <h2>Contact</h2>
+      <form id="contact-form" class="form">
+        <label>
+          Name
+          <input type="text" id="contact-name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="contact-email" required />
+        </label>
+        <label>
+          Message
+          <textarea id="contact-message" rows="4" required></textarea>
+        </label>
+        <div>
+          <button class="btn" type="submit">Send message</button>
+        </div>
+      </form>
+    </section>
+  </template>
+
+  <!-- Login / Signup Modal -->
+  <div id="auth-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="auth-title">
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="close-auth" aria-label="Close">✕</button>
+      <h2 id="auth-title">Login</h2>
+      <form id="auth-form" class="form">
+        <label>
+          Name (for signup)
+          <input type="text" id="auth-name" placeholder="Your name (signup)" />
+        </label>
+        <label>
+          Email
+          <input type="email" id="auth-email" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="auth-password" required />
+        </label>
+        <div class="auth-actions">
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" id="switch-auth" class="btn btn-outline">Switch to Signup</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quiz-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="quiz-title">
+    <div class="modal-content modal-large" role="document">
+      <button class="modal-close" id="close-quiz" aria-label="Close">✕</button>
+      <h2 id="quiz-title">Sample Quiz</h2>
+      <div id="quiz-body"></div>
+    </div>
+  </div>
+
+  <script src="scripts.js" defer></script>
+</body>
+</html>

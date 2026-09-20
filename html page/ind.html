@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Free Training Courses — Demo Clone</title>
+    <style>
+        /* Simple, clean responsive styles to mimic a training-overview layout */
+        :root {
+            --accent: #0b5cff;
+            --muted: #6b7280;
+            --bg: #f7f9fc
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background: var(--bg);
+            color: #111
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px
+        }
+
+        header.site-header {
+            background: #fff;
+            box-shadow: 0 1px 0 rgba(16, 24, 40, 0.04)
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo .mark {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #0b9bff);
+            border-radius: 6px
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        nav.main-nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .hero {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            padding: 34px 0
+        }
+
+        .hero-left {
+            flex: 1
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .hero h1 {
+            margin: 8px 0;
+            font-size: 30px;
+            line-height: 1.05
+        }
+
+        .hero p {
+            color: var(--muted);
+            margin: 0 0 18px
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 0;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06)
+        }
+
+        .search-bar input {
+            border: 0;
+            outline: none;
+            font-size: 15px
+        }
+
+        .hero-right {
+            width: 320px
+        }
+
+        .card {
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04)
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 18px 0
+        }
+
+        .chip {
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid #e6e9ef;
+            font-size: 14px;
+            color: #374151
+        }
+
+        /* Courses grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px
+        }
+
+        .course {
+            background: #fff;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #eef2f7
+        }
+
+        .course h3 {
+            margin: 6px 0;
+            font-size: 16px
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .tags {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            font-size: 12px;
+            background: #eef2ff;
+            color: var(--accent);
+            padding: 6px 8px;
+            border-radius: 6px
+        }
+
+        footer {
+            margin-top: 28px;
+            padding: 28px 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* Responsive tweaks */
+        @media (max-width:760px) {
+            .hero {
+                flex-direction: column
+            }
+
+            .hero-right {
+                width: 100%
+            }
+
+            nav.main-nav {
+                display: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container topbar">
+            <div class="logo">
+                <div class="mark" aria-hidden></div>
+                <div>
+                    <div style="font-weight:800">Training</div>
+                    <div style="font-size:12px;color:var(--muted)">Free Courses — Demo</div>
+                </div>
+            </div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#">Platform</a>
+                <a href="#">Security</a>
+                <a href="#">Observability</a>
+                <a href="#">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-left">
+                <div class="eyebrow">Free training</div>
+                <h1>Learn the core skills to get started — on your schedule</h1>
+                <p>Short, self-paced courses and hands-on labs to help you explore the platform, security, and
+                    observability — free for everyone.</p>
+                <div class="cta-row">
+                    <button class="btn" onclick="alert('Enroll clicked')">Browse courses</button>
+                    <div class="search-bar" style="flex:1;min-width:220px">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.6">
+                            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                            <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round"></circle>
+                        </svg>
+                        <input id="search" type="search" placeholder="Search courses, topics, or skills"
+                            oninput="filterCourses()" />
+                    </div>
+                </div>
+                <div class="filters" aria-hidden>
+                    <div class="chip">All levels</div>
+                    <div class="chip">Beginner</div>
+                    <div class="chip">Self-paced</div>
+                    <div class="chip">Hands-on lab</div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="card">
+                    <strong>Featured</strong>
+                    <p style="margin:8px 0;color:var(--muted);font-size:14px">Top picks this month: Introduction to
+                        Searching, Data Onboarding basics, and Security fundamentals.</p>
+                    <a href="#courses" style="font-weight:700;color:var(--accent);text-decoration:none">View course
+                        catalog →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses">
+            <h2 style="margin:18px 0 8px">Courses</h2>
+            <p style="margin:0 0 18px;color:var(--muted)">Showing <span id="count">9</span> free courses</p>
+
+            <div class="grid" id="grid">
+                <!-- Course items (sample) -->
+                <article class="course" data-title="Introduction to Searching" data-tags="search,beginner">
+                    <h3>Introduction to Searching</h3>
+                    <div class="meta"><span>Self-paced · 45 min</span><span>Beginner</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Learn how to run searches, filter
+                        results, and create basic visualizations.</p>
+                    <div class="tags"><span class="tag">search</span><span class="tag">visualization</span></div>
+                </article>
+
+                <article class="course" data-title="Data Onboarding Basics" data-tags="data,onboarding">
+                    <h3>Data Onboarding Basics</h3>
+                    <div class="meta"><span>Self-paced · 30 min</span><span>Beginner</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Understand how to get data into the
+                        platform and perform basic parsing.</p>
+                    <div class="tags"><span class="tag">data</span><span class="tag">parsing</span></div>
+                </article>
+
+                <article class="course" data-title="Security Fundamentals" data-tags="security,siem">
+                    <h3>Security Fundamentals</h3>
+                    <div class="meta"><span>Self-paced · 50 min</span><span>Intermediate</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Explore how the platform can be used
+                        for threat detection and basic investigations.</p>
+                    <div class="tags"><span class="tag">security</span><span class="tag">threat hunting</span></div>
+                </article>
+
+                <article class="course" data-title="Search Best Practices" data-tags="search,advanced">
+                    <h3>Search Best Practices</h3>
+                    <div class="meta"><span>Self-paced · 40 min</span><span>Advanced</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Improve performance with advanced
+                        search techniques and optimizations.</p>
+                    <div class="tags"><span class="tag">search</span><span class="tag">performance</span></div>
+                </article>
+
+                <article class="course" data-title="Alerts & Monitoring" data-tags="alerts,monitoring">
+                    <h3>Alerts & Monitoring</h3>
+                    <div class="meta"><span>Self-paced · 35 min</span><span>Intermediate</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Set up alerts, thresholds, and basic
+                        incident notifications.</p>
+                    <div class="tags"><span class="tag">monitoring</span><span class="tag">alerts</span></div>
+                </article>
+
+                <article class="course" data-title="Dashboards 101" data-tags="dashboards,visualization">
+                    <h3>Dashboards 101</h3>
+                    <div class="meta"><span>Self-paced · 30 min</span><span>Beginner</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Build dashboards to visualize search
+                        results and share insights.</p>
+                    <div class="tags"><span class="tag">dashboards</span><span class="tag">visualization</span></div>
+                </article>
+
+                <article class="course" data-title="Parsing Logs" data-tags="data,parsing">
+                    <h3>Parsing Logs</h3>
+                    <div class="meta"><span>Hands-on lab · 60 min</span><span>Intermediate</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Hands-on lab for extracting fields and
+                        transforming messy logs.</p>
+                    <div class="tags"><span class="tag">hands-on</span><span class="tag">parsing</span></div>
+                </article>
+
+                <article class="course" data-title="Intro to Observability" data-tags="observability,metrics">
+                    <h3>Intro to Observability</h3>
+                    <div class="meta"><span>Self-paced · 40 min</span><span>Beginner</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Learn the basics of metrics, traces,
+                        and how they fit into monitoring.</p>
+                    <div class="tags"><span class="tag">observability</span><span class="tag">metrics</span></div>
+                </article>
+
+                <article class="course" data-title="API Fundamentals" data-tags="api,automation">
+                    <h3>API Fundamentals</h3>
+                    <div class="meta"><span>Self-paced · 25 min</span><span>Beginner</span></div>
+                    <p style="color:var(--muted);margin:10px 0 0;font-size:14px">Using APIs to automate tasks and
+                        integrate with other tools.</p>
+                    <div class="tags"><span class="tag">api</span><span class="tag">automation</span></div>
+                </article>
+
+            </div>
+        </section>
+
+        <footer>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+                <div>© Demo Training • Built for educational purposes</div>
+                <div style="color:var(--muted);font-size:13px">Need the real courses? Visit the official training site.
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Basic client-side filtering by title and tags
+        function filterCourses() {
+            const q = document.getElementById('search').value.trim().toLowerCase();
+            const cards = Array.from(document.querySelectorAll('.course'));
+            let shown = 0;
+            cards.forEach(card => {
+                const title = card.dataset.title.toLowerCase();
+                const tags = card.dataset.tags.toLowerCase();
+                if (!q || title.includes(q) || tags.includes(q)) {
+                    card.style.display = 'block'; shown++
+                } else { card.style.display = 'none' }
+            })
+            document.getElementById('count').textContent = shown;
+        }
+
+        // accessibility: focus search on cmd/ctrl+K
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault(); document.getElementById('search').focus();
+            }
+        })
+    </script>
+</body>
+
+</html>
